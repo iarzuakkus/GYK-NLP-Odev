@@ -13,9 +13,3 @@ hw1_path = os.path.abspath(os.path.join(current_dir, "..", "ep1-1706"))
 sys.path.append(hw1_path)
 
 from hw1 import text_pipeline
-
-lower = []
-for i in range(len(df_headline)):
-    text = text_pipeline('lowercasing',df_headline[i])
-    lower.append(text)
-
