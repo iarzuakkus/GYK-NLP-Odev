@@ -37,15 +37,10 @@ def text_pipeline(process, corpus=''):
         return lemmatizer.lemmatize(word, pos=pos)
 
     elif process == "tf-idf":
-        vectorizer = TfidfVectorizer()
+        vectorizer = TfidfVectorizer(max_df=0.95, min_df=2)
         X = vectorizer.fit_transform(corpus)
-        feature_names = vectorizer.get_feature_names_out()
-        X_array = X.toarray()
-        tfidf_dicts = [
-            {word: round(score, 4) for word, score in zip(feature_names, row)}
-            for row in X_array
-        ]
-        return tfidf_dicts
+        list = [vectorizer.get_feature_names_out(),X.toarray()]
+        return list
 
     elif process == "generate":
         num = int(input("\nKaç cümle oluşturmak istiyorsunuz?: "))
