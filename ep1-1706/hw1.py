@@ -30,11 +30,10 @@ def text_pipeline(process, corpus=''):
         return filtered_corpus
 
     elif process == "lemmatization":
-        print(f"\n{corpus}")
-        word = input("Lemmatize etmek istediğiniz kelimeyi girin: ")
-        pos = input("Kelimede kullanmak istediğiniz POS etiketini girin (örn: n, v, a, r): ")
         lemmatizer = WordNetLemmatizer()
-        return lemmatizer.lemmatize(word, pos=pos)
+        tokens = word_tokenize(corpus)
+        lemmatized = [lemmatizer.lemmatize(token) for token in tokens]
+        return lemmatized
 
     elif process == "tf-idf":
         vectorizer = TfidfVectorizer(max_df=0.95, min_df=2)

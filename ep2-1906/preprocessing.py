@@ -18,7 +18,6 @@ def preprocess_remove_stopwords(text: str) -> List[str]:
     return text_pipeline("stopwords", text)
 
 def preprocess_lemmatize(text: str) -> Union[str, List[str]]:
-    # Not: text_pipeline("lemmatization", ...) kullanıcıdan input ister, toplu kullanım için uygun değildir.
-    # Burada sadece fonksiyon olarak bırakıyoruz.
     return text_pipeline("lemmatization", text)
+
 
