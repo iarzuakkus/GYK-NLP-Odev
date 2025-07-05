@@ -4,8 +4,6 @@ from vectorization import vectorize_bow, vectorize_tfidf
 from sklearn.decomposition import LatentDirichletAllocation
 from vectorization import vectorize_bow
 
-import pyLDAvis
-import pyLDAvis.sklearn
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -23,9 +21,6 @@ def extract_topics_lda(texts, n_topics=5, n_words=7):
         topics.append(words)
 
     return lda, topics, dtm, vectorizer  # ← MUTLAKA 4 değer döndürmeli
-
-
-
 
 
 def extract_topics_nmf(texts, n_topics=3, n_words=10):
@@ -71,16 +66,23 @@ def name_topic(top_words: list) -> str:
 
     return "Diğer / Belirsiz"
 
-def visualize_lda_model(model, dtm, vectorizer, output_html="lda_viz.html"):
-    """
-    model: sklearn LDA modeli
-    dtm: belge-terim matrisi (TF-IDF veya Count)
-    vectorizer: kullanılan vectorizer (CountVectorizer veya TfidfVectorizer)
-    output_html: HTML olarak kayıt edilecek dosya ismi
-    """
 
-    panel = pyLDAvis.sklearn.prepare(model, dtm, vectorizer)
-    pyLDAvis.save_html(panel, output_html)
-    print(f"\n LDA görselleştirme başarıyla '{output_html}' dosyasına kaydedildi.")
+def visualize_lda_model(lda_model, vectorizer, n_top_words=10):
+    import matplotlib.pyplot as plt
 
+    feature_names = vectorizer.get_feature_names_out()
+    n_topics = lda_model.n_components
+
+    for topic_idx, topic in enumerate(lda_model.components_):
+        top_indices = topic.argsort()[:-n_top_words - 1:-1]
+        top_words = [feature_names[i] for i in top_indices]
+        top_scores = topic[top_indices]
+
+        plt.figure(figsize=(8, 5))
+        plt.barh(top_words, top_scores)
+        plt.gca().invert_yaxis()
+        plt.title(f"Topic {topic_idx + 1}")
+        plt.xlabel("Kelime Önemi")
+        plt.tight_layout()
+        plt.show()
 
