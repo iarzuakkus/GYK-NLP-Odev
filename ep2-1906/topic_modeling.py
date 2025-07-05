@@ -20,9 +20,6 @@ def extract_topics_lda(texts, n_topics=5, n_words=7):
         words = [vectorizer.get_feature_names_out()[i] for i in top_indices]
         topics.append(words)
 
-    return lda, topics, dtm, vectorizer  # ← MUTLAKA 4 değer döndürmeli
-
-
 def extract_topics_nmf(texts, n_topics=3, n_words=10):
     """
     TF-IDF vektörlerinden NMF ile topic çıkarımı yapar.
