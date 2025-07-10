@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Bidirectional, Dropout
 from tensorflow.keras.callbacks import EarlyStopping
-from preprocess import preprocess_data  # ✅ senin preprocess fonksiyonunu kullanıyoruz
+from preprocess import preprocess_data 
 
 def build_model(vocab_size, max_len, output_dim=28):
     model = Sequential()
@@ -13,7 +13,7 @@ def build_model(vocab_size, max_len, output_dim=28):
     return model
 
 if __name__ == "__main__":
-    print("📦 Veriler işleniyor (preprocess.py)...")
+    print("Veriler işleniyor (preprocess.py)...")
     csv_path = "data/goemotions_merged.csv"
     max_len = 100
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
         max_len=max_len
     )
 
-    print("🧠 Model oluşturuluyor...")
+    print("Model oluşturuluyor...")
     model = build_model(vocab_size=vocab_size, max_len=max_len)
 
     early_stopping = EarlyStopping(
@@ -32,7 +32,7 @@ if __name__ == "__main__":
         restore_best_weights=True
     )
 
-    print("🚀 Eğitim başlıyor...")
+    print("Eğitim başlıyor...")
     history = model.fit(
         X_train, y_train,
         epochs=15,
@@ -42,12 +42,12 @@ if __name__ == "__main__":
         verbose=1
     )
 
-    print("💾 Model kaydediliyor: goemotions_lstm_model.h5")
+    print("Model kaydediliyor: goemotions_lstm_model.h5")
     model.save("goemotions_lstm_model.h5")
 
     # Skorları yazdır
     train_acc = history.history['accuracy'][-1]
     val_acc = history.history['val_accuracy'][-1]
-    print(f"✅ Eğitim tamamlandı. 🎉")
-    print(f"📈 Train Accuracy: {train_acc:.4f}")
-    print(f"📊 Validation Accuracy: {val_acc:.4f}")
+    print(f"Eğitim tamamlandı.")
+    print(f"Train Accuracy: {train_acc:.4f}")
+    print(f"Validation Accuracy: {val_acc:.4f}")
