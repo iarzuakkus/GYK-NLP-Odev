@@ -48,14 +48,14 @@ def preprocess_data(csv_path, max_words=10000, max_len=100):
     # 9. Dön
     return X_train_pad, X_test_pad, y_train, y_test, tokenizer, len(tokenizer.word_index) + 1
 
-# 🔍 Kontrol bloğu
+# Kontrol bloğu
 if __name__ == "__main__":
     csv_path = "data/goemotions_merged.csv"
     X_train, X_test, y_train, y_test, tokenizer, vocab_size = preprocess_data(csv_path)
 
-    print("✅ Preprocess tamam.")
-    print("📏 X_train shape:", X_train.shape)
-    print("📏 y_train shape:", y_train.shape)
-    print("🔢 y_train dtype:", y_train.dtype)
-    print("📚 Örnek metin:", tokenizer.sequences_to_texts([X_train[0]])[0][:100])
-    print("🧠 Vocab size:", vocab_size)
+    print("Preprocess tamam.")
+    print("X_train shape:", X_train.shape)
+    print("y_train shape:", y_train.shape)
+    print("y_train dtype:", y_train.dtype)
+    print("Örnek metin:", tokenizer.sequences_to_texts([X_train[0]])[0][:100])
+    print("Vocab size:", vocab_size)

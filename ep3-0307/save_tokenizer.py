@@ -1,5 +1,5 @@
 import pickle
-from preprocess import preprocess_data  # tokenizer zaten burada oluşuyor
+from preprocess import preprocess_data  # tokenizer burada oluşuyor
 
 if __name__ == "__main__":
     csv_path = "data/goemotions_merged.csv"
@@ -11,4 +11,4 @@ if __name__ == "__main__":
     with open("tokenizer.pkl", "wb") as f:
         pickle.dump(tokenizer, f)
 
-    print("✅ Tokenizer başarıyla kaydedildi: tokenizer.pkl")
+    print("Tokenizer başarıyla kaydedildi: tokenizer.pkl")

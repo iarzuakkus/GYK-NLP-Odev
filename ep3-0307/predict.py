@@ -34,14 +34,14 @@ def predict_emotions(text, max_len=100, threshold=0.3):
 
 # 4. Kullanıcıdan metin al
 if __name__ == "__main__":
-    print("🎤 Bir cümle gir ve duygu tahmini al!")
+    print(" Bir cümle gir ve duygu tahmini al!")
     while True:
         text = input("\nMetin (çıkmak için q): ")
         if text.lower() in ['q', 'quit', 'exit']:
             break
 
         results = predict_emotions(text)
-        print("\n🎯 Tahmin Edilen Duygular:")
+        print("\n Tahmin Edilen Duygular:")
         if isinstance(results, list):
             for item in results:
                 print(f" - {item[0]} ({item[1]*100:.1f}%)" if isinstance(item, tuple) else f" - {item}")
