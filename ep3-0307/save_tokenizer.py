@@ -8,7 +8,7 @@ if __name__ == "__main__":
     _, _, _, _, tokenizer, _ = preprocess_data(csv_path)
 
     # Kaydet
-    with open("tokenizer.pkl", "wb") as f:
+    with open("models/tokenizer.pkl", "wb") as f:
         pickle.dump(tokenizer, f)
 
     print("✅ Tokenizer başarıyla kaydedildi: tokenizer.pkl")
