@@ -15,9 +15,9 @@ emotion_labels = [
 ]
 
 # 2. Model ve tokenizer yükle
-model = load_model("goemotions_lstm_model.h5")
+model = load_model("models/goemotions_eda_model.h5")
 
-with open("tokenizer.pkl", "rb") as f:
+with open("models/tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
 # 3. Tahmin fonksiyonu
