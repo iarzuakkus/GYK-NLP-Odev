@@ -1,0 +1,45 @@
+🚀 Eğitim başlıyor...
+
+
+Epoch 1/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2882s 272ms/step - accuracy: 0.3173 - auc: 0.7798 - loss: 0.1552 - val_accuracy: 0.3920 - val_auc: 0.8819 - val_loss: 0.1227
+Epoch 2/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2806s 266ms/step - accuracy: 0.3793 - auc: 0.8598 - loss: 0.1298 - val_accuracy: 0.4027 - val_auc: 0.8888 - val_loss: 0.1201
+Epoch 3/15
+Epoch 3/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2802s 265ms/step - accuracy: 0.3885 - auc: 0.8724 - loss: 0.1257 - val_accuracy: 0.4077 - val_auc: 0.8941 - val_loss: 0.1180
+Epoch 4/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2861s 271ms/step - accuracy: 0.3953 - auc: 0.8800 - loss: 0.1231 - val_accuracy: 0.4106 - val_auc: 0.8970 - val_loss: 0.1170
+Epoch 5/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2820s 267ms/step - accuracy: 0.4012 - auc: 0.8840 - loss: 0.1215 - val_accuracy: 0.4163 - val_auc: 0.8990 - val_loss: 0.1159
+Epoch 6/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2736s 259ms/step - accuracy: 0.4041 - auc: 0.8863 - loss: 0.1207 - val_accuracy: 0.4207 - val_auc: 0.8994 - val_loss: 0.1155
+Epoch 7/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2695s 255ms/step - accuracy: 0.4094 - auc: 0.8884 - loss: 0.1199 - val_accuracy: 0.4223 - val_auc: 0.8995 - val_loss: 0.1153
+Epoch 8/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2605s 247ms/step - accuracy: 0.4093 - auc: 0.8901 - loss: 0.1192 - val_accuracy: 0.4203 - val_auc: 0.9014 - val_loss: 0.1149
+Epoch 9/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2497s 236ms/step - accuracy: 0.4150 - auc: 0.8911 - loss: 0.1188 - val_accuracy: 0.4193 - val_auc: 0.9020 - val_loss: 0.1146
+Epoch 10/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2430s 230ms/step - accuracy: 0.4141 - auc: 0.8917 - loss: 0.1184 - val_accuracy: 0.4250 - val_auc: 0.9027 - val_loss: 0.1143
+Epoch 11/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2404s 228ms/step - accuracy: 0.4152 - auc: 0.8922 - loss: 0.1182 - val_accuracy: 0.4255 - val_auc: 0.9017 - val_loss: 0.1143
+Epoch 12/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2410s 228ms/step - accuracy: 0.4173 - auc: 0.8929 - loss: 0.1179 - val_accuracy: 0.4241 - val_auc: 0.9026 - val_loss: 0.1140
+Epoch 13/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2377s 225ms/step - accuracy: 0.4184 - auc: 0.8939 - loss: 0.1176 - val_accuracy: 0.4263 - val_auc: 0.9031 - val_loss: 0.1138
+Epoch 14/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2367s 224ms/step - accuracy: 0.4198 - auc: 0.8947 - loss: 0.1172 - val_accuracy: 0.4253 - val_auc: 0.9030 - val_loss: 0.1139
+Epoch 15/15
+10562/10562 ━━━━━━━━━━━━━━━━━━━━ 2343s 222ms/step - accuracy: 0.4189 - auc: 0.8945 - loss: 0.1174 - val_accuracy: 0.4265 - val_auc: 0.9029 - val_loss: 0.1139
+
+
+💾 Model kaydediliyor: models/goemotions_eda_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. 
+This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+
+
+✅ EDA verisiyle eğitim tamamlandı. 🎉
+📈 Train Accuracy: 0.4185
+📊 Validation Accuracy: 0.4265
+🧮 Validation AUC     : 0.9029
