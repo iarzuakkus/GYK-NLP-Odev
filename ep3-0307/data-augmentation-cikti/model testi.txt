@@ -1,0 +1,71 @@
+Metin (çıkmak için q): i am bored.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 1s 990ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - neutral (32.4%)
+
+Metin (çıkmak için q): i want to smile
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - neutral (38.4%)
+
+Metin (çıkmak için q): i am happy
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 45ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - neutral (32.3%)
+
+Metin (çıkmak için q): i enjoy.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 44ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - neutral (33.4%)
+
+Metin (çıkmak için q): She was angry and disappointed after hearing the news.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 35ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - admiration (68.1%)
+
+Metin (çıkmak için q): he was angry and disappointed after hearing the news.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 40ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - admiration (71.3%)
+
+Metin (çıkmak için q): I feel grateful for my friends, but lonely at the same time.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 52ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - remorse (31.4%)
+
+Metin (çıkmak için q): Watching the sunset made me calm and a little nostalgic
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 40ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - sadness (42.9%)
+
+Metin (çıkmak için q): I can't believe he forgot my birthday again.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - Hiçbir duygu eşiği geçemedi.
+
+Metin (çıkmak için q): Finally getting the job offer made me feel proud and relieved.
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - neutral (52.4%)
+
+Metin (çıkmak için q): I miss her so much it hurts
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 38ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - Hiçbir duygu eşiği geçemedi.
+
+Metin (çıkmak için q): I miss her so much it hurts
+1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 40ms/step
+
+🎯 Tahmin Edilen Duygular:
+ - Hiçbir duygu eşiği geçemedi.

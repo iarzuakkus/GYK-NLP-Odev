@@ -7,7 +7,11 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from preprocess import clean_text  # önceden yazdığımız temizleme fonksiyonu
 
+<<<<<<< HEAD
 # Etiket isimleri (GoEmotions - 28 sınıf)
+=======
+# 🎯 Etiket isimleri (GoEmotions - 28 sınıf)
+>>>>>>> 27abdc5fc6a11441cffb8db78aa3a4349b2707f6
 emotion_labels = [
     'admiration', 'amusement', 'anger', 'annoyance', 'approval', 'caring',
     'confusion', 'curiosity', 'desire', 'disappointment', 'disapproval',
@@ -16,6 +20,7 @@ emotion_labels = [
     'remorse', 'sadness', 'surprise', 'neutral'
 ]
 
+<<<<<<< HEAD
 # FastAPI uygulaması
 app = FastAPI(title="GoEmotions LSTM API", version="1.0")
 
@@ -25,11 +30,26 @@ with open("tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
 # Giriş şeması
+=======
+# 🚀 FastAPI uygulaması
+app = FastAPI(title="GoEmotions LSTM API", version="1.0")
+
+# 📦 Model ve tokenizer yükle
+model = load_model("models/goemotions_lstm_model.h5")
+with open("models/tokenizer.pkl", "rb") as f:
+    tokenizer = pickle.load(f)
+
+# 🎯 Giriş şeması
+>>>>>>> 27abdc5fc6a11441cffb8db78aa3a4349b2707f6
 class TextInput(BaseModel):
     text: str
     threshold: Union[float, None] = 0.3
 
+<<<<<<< HEAD
 # Tahmin fonksiyonu
+=======
+# 📌 Tahmin fonksiyonu
+>>>>>>> 27abdc5fc6a11441cffb8db78aa3a4349b2707f6
 def predict_emotions(text: str, threshold: float = 0.3, max_len: int = 100):
     cleaned = clean_text(text)
     seq = tokenizer.texts_to_sequences([cleaned])
@@ -42,7 +62,11 @@ def predict_emotions(text: str, threshold: float = 0.3, max_len: int = 100):
     ]
     return predictions if predictions else [{"label": "none", "score": 0.0}]
 
+<<<<<<< HEAD
 
+=======
+# 📌 API endpoint
+>>>>>>> 27abdc5fc6a11441cffb8db78aa3a4349b2707f6
 @app.post("/predict")
 def get_emotions(input_data: TextInput):
     results = predict_emotions(input_data.text, threshold=input_data.threshold)
