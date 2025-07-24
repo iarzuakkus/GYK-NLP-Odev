@@ -38,7 +38,7 @@ def run_rouge_evaluation(test_data, save_path=None):
     rouge = evaluate.load("rouge")
     scores = rouge.compute(predictions=predictions, references=references, use_stemmer=True)
 
-    print("\n\n📊 ROUGE Scores:\n" + "-"*20)
+    print("\n\n ROUGE Scores:\n" + "-"*20)
     for metric, score in scores.items():
         print(f"{metric}: {score:.4f}")
 
@@ -49,13 +49,13 @@ def run_rouge_evaluation(test_data, save_path=None):
                 "comparisons": results,
                 "rouge_scores": scores
             }, f, indent=2)
-        print(f"\n✅ Results saved to: {save_path}")
+        print(f"\n Results saved to: {save_path}")
 
     return scores
 
 if __name__ == "__main__":
     test_file = "data/cnn_dailymail_test.json"
-    save_file = "outputs/test_results.json"
+    save_file = "outputs/test_results_m2.json"
 
     test_samples = load_test_data(test_file, limit=10)
     print(f"\nLoaded {len(test_samples)} test examples.")
