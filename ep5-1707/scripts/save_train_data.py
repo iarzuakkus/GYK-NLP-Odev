@@ -18,3 +18,6 @@ def select_and_save_data(line_range, file_path, split="train"):
 if __name__ == "__main__":
     output_path = "data/cnn_dailymail_sample.json"
     select_and_save_data((0, 10000), output_path, split="train")
+
+    output_path = "data/cnn_dailymail_validation.json"
+    select_and_save_data((0, 1000), output_path, split="validation")
