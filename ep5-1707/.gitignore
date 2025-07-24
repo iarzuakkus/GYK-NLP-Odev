@@ -2,3 +2,16 @@ venv/
 models/t5-small-summary/pytorch_model.bin
 models/t5-small-summary/model.safetensors
 spiece.model
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+venv/
+
+models/t5-small-summary/
+models/t5-small-summary-v1/
+
+*.zip
