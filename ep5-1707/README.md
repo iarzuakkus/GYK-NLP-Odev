@@ -1,108 +1,117 @@
-## Proje Gelişim Raporu
+# Proje Gelişim Raporu
 
-### 1. Proje Amacı
+## 1. Proje Amacı
 
-Bu projede amaç, haber metinlerinden özgün özetler üretebilen bir doğal dil işleme (NLP) sistemi geliştirmektir. Transformer tabanlı bir mimari (ozellikle T5-small) kullanılarak, CNN/DailyMail veri seti üzerinde model eğitilmiş ve eğitilen model daha sonra test verileri üzerinde değerlendirilmiştir.
+Bu projede amaç, haber metinlerinden özgün özetler üretebilen bir doğal dil işleme (NLP) sistemi geliştirmektir. Transformer tabanlı bir mimari (T5-small) kullanılarak, CNN/DailyMail veri seti üzerinde model eğitilmiş ve test verileri üzerinde değerlendirilmiştir.
 
-### 2. Kullanılan Veri Seti
+## 2. Kullanılan Veri Seti
 
-* **Veri Seti**: CNN/DailyMail
-* **Alanlar**: `article` (giriş metni) ve `highlights` (referans özet)
-* **Eğitim verisi**: İlk 1000 örnek (cnn\_dailymail\_sample.json)
-* **Test verisi**: Sonraki 200 örnek (cnn\_dailymail\_test.json)
+* Veri Seti: CNN/DailyMail
+* Alanlar: `article` (giriş metni) ve `highlights` (referans özet)
+* Eğitim verisi: `cnn_dailymail_sample.json` (1000 örnek)
+* Test verisi: `cnn_dailymail_test.json` (200 örnek)
+* Doğrulama verisi: `cnn_dailymail_validation.json`
 
-### 3. Ön İşleme
+> Not: 1000 verilik ilk versiyon `t5-small-summary-v1` klasöründe; 10.000 verilik geliştirilmiş versiyon `t5-small-summary` klasöründe tutulmuş, farklar çıktı dosyalarında ("\_m2") belirtilmiştir.
+
+## 3. Ön İşleme
 
 * Metinler küçük harfe çevrilmiş ve temizlenmiştir.
-* **Tokenizer**: `T5Tokenizer`
-* Giriş metni `summarize: ` şeklinde formatlanmıştır.
+* Tokenizer: `T5Tokenizer`
+* Giriş metni: `summarize:` formatında hazırlanmıştır.
 * Maksimum uzunluk: `max_length=128`
+* Tokenize veriler: `tokenized_train_data.npz`, `tokenized_validation_data.npz`, `tokenized_data_1k.npz`
 
-### 4. Model Eğitimi
+## 4. Model Eğitimi
 
-* **Kullanılan Model**: `t5-small`
-* Eğitim süreci `scripts/train.py` dosyası ile yürütülmüştür.
-* Parametreler `outputs/hyperparameters.json` dosyasında tutulmuştur.
-* Log dosyası: `train_log.txt`
+* Model: `t5-small`
+* Kod: `scripts/train.py`
+* Parametreler: `outputs/hyperparameters_1k.json` ve `outputs/hyperparameters.json`
+* Model dosyası: `models/t5-small-summary/` ve `t5-small-summary-v1/`
 
-### 5. Tahmin Fonksiyonu
+## 5. Tahmin Fonksiyonu
 
-* `scripts/predict.py` içinde tanımlanmıştır.
-* Örnek metinlerden özet üretimi yapılmaktadır.
-* Tokenizer ve model sadece yerel dosyalardan yüklenmektedir (`local_files_only=True`).
+* Dosya: `scripts/predict.py`
+* Amaç: Giriş metinlerinden özet üretimi
+* Yalnızca yerel dosyalar kullanılmıştır (`local_files_only=True`)
 
-### 6. Değerlendirme (ROUGE)
+## 6. Değerlendirme (ROUGE)
 
-* ROUGE metrikleri ile modelin başarımı test edilmiştir.
-* Kullanılan metrikler: `ROUGE-1`, `ROUGE-2`, `ROUGE-L`, `ROUGE-Lsum`
-* Değerlendirme kodu: `scripts/test.py`
+* Kullanılan metrikler: ROUGE-1, ROUGE-2, ROUGE-L, ROUGE-Lsum
+* Kod: `scripts/test.py`
+* Test sonuçları: `outputs/test_results.json` ve `test_results_m2.json`
 
-#### Örnek Çıktı
+### Örnek Çıktı:
 
 ```json
 {
   "index": 9,
-  "article": "(CNN)For the first time in eight years...",
-  "reference_summary": "Bob Barker returned to host ...",
-  "predicted_summary": "bob barker hosted the tv game show ..."
+  "article": "(CNN)For the first time in eight years, a TV legend returned to doing what he does best. Contestants told to \"come on down!\" on the April 1 edition of \"The Price Is Right\" encountered not host Drew Carey but another familiar face in charge of the proceedings. Instead, there was Bob Barker, who hosted the TV game show for 35 years before stepping down in 2007. Looking spry at 91, Barker handled the first price-guessing game of the show, the classic \"Lucky Seven,\" before turning hosting duties over to Carey, who finished up. Despite being away from the show for most of the past eight years, Barker didn't seem to miss a beat.",
+  "reference_summary": "Bob Barker returned to host \"The Price Is Right\" on Wednesday .\nBarker, 91, had retired as host in 2007 .",
+  "predicted_summary": "bob barker hosted the tv game show for 35 years before stepping down in 2007 he handled the first price-guessing game of the show, the classic \"lucky seven\""
 }
 ```
 
-#### ROUGE Sonuçları (10 örnek için):
+### ROUGE Sonuçları:
 
-* **ROUGE-1**: 0.3597
-* **ROUGE-2**: 0.1183
-* **ROUGE-L**: 0.2617
-* **ROUGE-Lsum**: 0.3049
+**1K veri ile eğitilmiş model (`outputs/test_results.json`):**
 
-Model, 10.000 örnekle yeniden eğitildikten sonra ROUGE-1: 0.3613, ROUGE-2: 0.1498, ROUGE-L: 0.2666 ve ROUGE-Lsum: 0.2987 skorlarına ulaşarak bilgi kapsama açısından orta düzeyde başarı gösterse de, dil bütünlüğü ve yapı açısından hâlâ gelişime açıktır.
+* ROUGE-1: 0.3597
+* ROUGE-2: 0.1183
+* ROUGE-L: 0.2617
+* ROUGE-Lsum: 0.3049
 
-Bu skorlar, modelin kelime düzeyinde (ROUGE-1) makul bir başarım gösterdiğini, ancak daha karmaşık ardışık yapıları (ROUGE-2) yakalama konusunda sınırlı olduğunu göstermektedir.
+**10K veri ile eğitilmiş model (`outputs/test_results_m2.json`):**
 
-### 7. Dosya Yapısı
+* ROUGE-1: 0.3613
+* ROUGE-2: 0.1498
+* ROUGE-L: 0.2666
+* ROUGE-Lsum: 0.2987
+
+> İlk modele göre 10K veri ile eğitilen model kelime çiftleri ve yapısal benzerlikte daha iyi performans göstermiştir.
+
+## 7. Dosya Yapısı
 
 ```
 ep5-1707/
-|
-├── data/                                # Örnek verilerin bulunduğu klasör
-│   ├── cnn_dailymail_sample.json        # Eğitim için kullanılan 1000 örnek
-│   ├── cnn_dailymail_test.json          # Testte kullanılan 200 örnek
-│   └── cnn_dailymail_validation.json    # Opsiyonel validation verisi
-│
+├── data/                               # Ham veri dosyaları
+│   ├── cnn_dailymail_sample.json        # 1000 örnekten oluşan eğitim verisi
+│   ├── cnn_dailymail_test.json          # 200 örnekten oluşan test verisi
+│   └── cnn_dailymail_validation.json    # Doğrulama verisi
 ├── models/
-│   └── t5-small-summary/                # Model ve tokenizer dosyaları
-│       ├── added_tokens.json            # Ekstra token'lar
-│       ├── config.json                  # Model mimarisi
-│       ├── generation_config.json       # Tahmin ayarları
-│       ├── model.safetensors            # Model ağırlıkları
-│       ├── special_tokens_map.json      # Token görevleri
-│       ├── spiece.model                 # Tokenizer vocab
-│       └── tokenizer_config.json        # Tokenizer davranış ayarları
-│
-├── outputs/
-│   ├── hyperparameters.json             # Eğitim parametreleri
-│   ├── test_results.json                # ROUGE skorları ve tahminler
-│   ├── tokenized_data.npz               # Tokenize edilmiş numpy verisi
-│   └── train_log.txt                    # Eğitim log dosyası
-│
-├── scripts/
-│   ├── predict.py                       # Özetleme fonksiyonu
-│   ├── preprocessing.py                 # Tokenizer ön işleme
-│   ├── test.py                          # ROUGE skor testi
-│   ├── train.py                         # Model eğitim scripti
-│   └── test_training_args.py            # Parametre testi
-│
-├── main.py                              # FastAPI uygulama dosyası
-├── README.md                            # Proje tanıtım dosyası
-└── .gitignore                           # Git ignore ayarları
+│   ├── t5-small-summary/                # 1K veriyle eğitilmiş model dosyaları
+│   └── t5-small-summary-v1/             # 10K veriyle eğitilmiş model versiyonu
+├── outputs/                             # Eğitim ve test çıktıları
+│   ├── hyperparameters_1k.json          # 1K eğitim parametreleri
+│   ├── hyperparameters.json             # 10K eğitim parametreleri
+│   ├── test_results.json                # 1K ROUGE test sonuçları
+│   ├── test_results_m2.json             # 10K ROUGE test sonuçları
+│   ├── tokenized_data_1k.npz            # Tokenize 1K veri
+│   ├── tokenized_train_data.npz         # Tokenize eğitim verisi (10K)
+│   ├── tokenized_validation_data.npz    # Tokenize doğrulama verisi
+│   ├── train_log_1k.txt                 # 1K eğitim logları
+│   └── train_log.txt                    # 10K eğitim logları
+├── scripts/                             # Tüm işlem adımlarını içeren kodlar
+│   ├── preprocessing.py                 # Metin ön işleme ve etiketleme
+│   ├── predict.py                       # Eğitilen modelle özet üretme
+│   ├── save_train_data.py               # datasets kütüphanesinden verileri çekme
+│   ├── test_training_args.py            # Eğitim parametrelerini doğrulama aracı
+│   ├── test.py                          # ROUGE skorları ile test işlemi
+│   └── train.py                         # model eğitimi
+├── main.py                              # FastAPI tabanlı inference servisi
+├── README.md                            # Proje hakkında genel açıklamalar
+└── .gitignore                           # Git versiyon kontrolününe dahil edilmeyecek dosyalar
 ```
 
-### 8. Sonuç ve Öneriler
+## 8. Sonuç
 
-Model, sınırlı veri ile eğitilmiş olmasına rağmen anlamlı ve tutarlı özetler üretebilmektedir. ROUGE-1 ve ROUGE-Lsum skorları bu başarıyı desteklemektedir. Daha büyük veri ile eğitim ve beam search gibi ünleme stratejileriyle modelin performansı daha da iyileştirilebilir.
+Model, sınırlı veriyle eğitilmesine rağmen çıktıları anlamlı ve tutarlıdır. ROUGE-1 ve ROUGE-Lsum skorları, kelime ölçeğinde yeterli kapsama sağladığını, ROUGE-2 skorları ise dil içi ardışık anlam bütünlüğünde hala geliştirilmeye açık noktalar olduğunu göstermektedir.
 
 ---
 
-**Hazırlayanlar:**
-***İlayda Arzu Akkuş - Ece Sude Günerhan***
-**GitHub**: [https://github.com/iarzuakkus/GYK-NLP-Odev/tree/main/ep5-1707](https://github.com/iarzuakkus/GYK-NLP-Odev/tree/main/ep5-1707)
+### Hazırlayanlar:
+
+* İlayda Arzu Akkuş
+* Ece Sude Günerhan
+
+GitHub: [GYK-NLP-Odev](https://github.com/iarzuakkus/GYK-NLP-Odev/tree/main/ep5-1707)
