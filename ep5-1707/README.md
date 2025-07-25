@@ -7,8 +7,8 @@ Bu projede amaç, haber metinlerinden özgün özetler üretebilen bir doğal di
 ## 2. Kullanılan Veri Seti
 
 * Veri Seti: CNN/DailyMail
-* Alanlar: `article` (giriş metni) ve `highlights` (referans özet)
-* Eğitim verisi: `cnn_dailymail_sample.json` (1000 örnek)
+* Alanlar: `article` (giriş metni) ve `summary` (referans özet)
+* Eğitim verisi: `cnn_dailymail_sample.json` (10K örnek)
 * Test verisi: `cnn_dailymail_test.json` (200 örnek)
 * Doğrulama verisi: `cnn_dailymail_validation.json`
 
@@ -54,14 +54,14 @@ Bu projede amaç, haber metinlerinden özgün özetler üretebilen bir doğal di
 
 ### ROUGE Sonuçları:
 
-**1K veri ile eğitilmiş model (`outputs/test_results.json`):**
+**1K veri ile eğitilmiş model:**
 
 * ROUGE-1: 0.3597
 * ROUGE-2: 0.1183
 * ROUGE-L: 0.2617
 * ROUGE-Lsum: 0.3049
 
-**10K veri ile eğitilmiş model (`outputs/test_results_m2.json`):**
+**10K veri ile eğitilmiş model:**
 
 * ROUGE-1: 0.3613
 * ROUGE-2: 0.1498
@@ -74,13 +74,13 @@ Bu projede amaç, haber metinlerinden özgün özetler üretebilen bir doğal di
 
 ```
 ep5-1707/
-├── data/                               # Ham veri dosyaları
-│   ├── cnn_dailymail_sample.json        # 1000 örnekten oluşan eğitim verisi
+├── data/                                # Ham veri dosyaları
+│   ├── cnn_dailymail_sample.json        # 10K örnekten oluşan eğitim verisi
 │   ├── cnn_dailymail_test.json          # 200 örnekten oluşan test verisi
 │   └── cnn_dailymail_validation.json    # Doğrulama verisi
 ├── models/
-│   ├── t5-small-summary/                # 1K veriyle eğitilmiş model dosyaları
-│   └── t5-small-summary-v1/             # 10K veriyle eğitilmiş model versiyonu
+│   ├── t5-small-summary/                # 10K veriyle eğitilmiş model dosyaları
+│   └── t5-small-summary-v1/             # 1K veriyle eğitilmiş model versiyonu
 ├── outputs/                             # Eğitim ve test çıktıları
 │   ├── hyperparameters_1k.json          # 1K eğitim parametreleri
 │   ├── hyperparameters.json             # 10K eğitim parametreleri
@@ -97,7 +97,7 @@ ep5-1707/
 │   ├── save_train_data.py               # datasets kütüphanesinden verileri çekme
 │   ├── test_training_args.py            # Eğitim parametrelerini doğrulama aracı
 │   ├── test.py                          # ROUGE skorları ile test işlemi
-│   └── train.py                         # model eğitimi
+│   └── train.py                         # Model eğitimi
 ├── main.py                              # FastAPI tabanlı inference servisi
 ├── README.md                            # Proje hakkında genel açıklamalar
 └── .gitignore                           # Git versiyon kontrolününe dahil edilmeyecek dosyalar
@@ -111,7 +111,7 @@ Model, sınırlı veriyle eğitilmesine rağmen çıktıları anlamlı ve tutarl
 
 ### Hazırlayanlar:
 
-* İlayda Arzu Akkuş
-* Ece Sude Günerhan
+* İlayda Arzu AKKUŞ
+* Ece Sude GÜNERHAN
 
-GitHub: [GYK-NLP-Odev](https://github.com/iarzuakkus/GYK-NLP-Odev/tree/main/ep5-1707)
+GitHub: [GYK-NLP-Odev](https://github.com/iarzuakkus/GYK-NLP-Odev)
